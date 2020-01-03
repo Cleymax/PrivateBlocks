@@ -1,0 +1,9 @@
+name: PrivateBlocks
+version: ${version}
+main: fr.cleymax.privateblocks.PrivateBlocks
+api-version: 1.13
+prefix: PB
+softdepend: [WorldEdit]
+authors: [Cleymax]
+description: Plugin to make blocks private
+website: https://cleymax.fr/

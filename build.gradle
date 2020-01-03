@@ -1,0 +1,58 @@
+apply plugin: 'java'
+apply plugin: 'signing'
+
+group = 'fr.cleymax'
+version = '1.0.0'
+
+sourceCompatibility = '1.8'
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    implementation 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'version': project.version
+    }
+}
+
+task javadocJar(type: Jar) {
+    archiveClassifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+jar {
+    archiveFileName = 'PrivateBlocks-' + project.version + '.jar'
+}
+
+signing {
+    required { project.hasProperty("signing.keyId") }
+    sign configurations.archives
+}
