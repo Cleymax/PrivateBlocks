@@ -1,0 +1,10 @@
+prefix: '&bPrivateBlock &f: &r'
+
+message:
+  not-permission: "{prefix}&cYou don't have permission to make that order!"
+  only-player: "{prefix}&cYou have to be logged in in-game to make this com and !"
+
+blocks:
+  default-message: "{prefix}&cThis block is protected!"
+
+wand: SHEARS
